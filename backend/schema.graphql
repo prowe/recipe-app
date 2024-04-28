@@ -6,3 +6,7 @@ type Recipe {
     id: ID!
     title: String!
 }
+
+type Mutation {
+    addRecipe(title: String!): Recipe!
+}

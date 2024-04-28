@@ -1,6 +1,21 @@
 Transform: AWS::Serverless-2016-10-31
 
 Resources:
+  RecipeTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: userName
+          AttributeType: S
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: userName
+          KeyType: HASH
+        - AttributeName: id
+          KeyType: RANGE
+
   ApiFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -15,6 +30,12 @@ Resources:
             - '*'
           AllowOrigins: 
             - '*'
+      Environment:
+        Variables:
+          RECIPE_TABLE: !Ref RecipeTable
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref RecipeTable
     Metadata:
       BuildMethod: esbuild
       BuildProperties:
