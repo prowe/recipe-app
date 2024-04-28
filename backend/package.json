@@ -1,0 +1,19 @@
+{
+  "name": "recipe-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^4.10.4",
+    "@as-integrations/aws-lambda": "^3.1.0",
+    "esbuild": "^0.20.2",
+    "graphql": "^16.8.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

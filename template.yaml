@@ -1,0 +1,29 @@
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  ApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: backend
+      Handler: index.graphqlHandler
+      Runtime: nodejs20.x
+      MemorySize: 512
+      FunctionUrlConfig:
+        AuthType: NONE
+        Cors:
+          AllowMethods:
+            - '*'
+          AllowOrigins: 
+            - '*'
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: false
+        Target: es2022
+        Sourcemap: true
+        EntryPoints:
+          - index.ts
+
+Outputs:
+  BackendUrl:
+    Value: !Sub "${ApiFunctionUrl.FunctionUrl}"
